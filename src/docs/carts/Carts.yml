@@ -1,0 +1,199 @@
+paths:
+  /api/carts/:
+    get:
+      summary: Obtiene todos los carritos
+      tags:
+        - Carts
+      responses:
+        "200":
+          description: Los carritos fueron obtenidos de la base de datos
+          content: 
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#components/schemas/Cart'
+        "500":
+          description: Error interno del servidor    
+    post:
+      summary: Crea un carrito apartir del body, require autentificacion.
+      tags:
+        - Carts 
+      parameters:
+      - name: uid
+        in: cokkie
+        required: true
+        description: id del user dueño del carrito
+        schema:
+          $type: String  
+      responses:
+        "200":
+          description: Carrito creado
+          content: 
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#components/schemas/Cart'
+        "401": 
+          description: Acceso denegado o token invalido          
+        "500":
+          description: Error interno del servidor           
+  /api/carts/{cid}:
+    get:
+      summary: Obtiene un carrito apartir de su id
+      tags:
+        - Carts
+      parameters:
+      - name: cid
+        in: path
+        required: true
+        description: id del carrito que se desea solicitar
+        schema:
+          $type: String  
+      responses:
+        "200":
+          description: Carrito encontrado
+          content: 
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#components/schemas/Cart'
+        "500":
+          description: Error interno del servidor  
+  /api/carts/{cid}/product/{pid}:          
+    put:
+      summary: Agrega un producto al carrito. Require autentificacion
+      tags:
+        - Carts
+      parameters:
+      - name: pid
+        in: path
+        required: true
+        description: id del producto que se desea agregar
+        schema:
+          $type: String 
+      - name: cid
+        in: path
+        required: true
+        description: id del carrito
+        schema:
+          $type: String     
+      responses:
+        "200":
+          description: Producto agregado
+          content: 
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#components/schemas/Cart'
+        "500":
+          description: Error interno del servidor     
+    delete:
+      summary: Borra un producto del carrito
+      tags:
+        - Carts
+      parameters:
+      - name: pid
+        in: path
+        required: true
+        description: id del producto que se desea eliminar
+        schema:
+          $type: String 
+      - name: cid
+        in: path
+        required: true
+        description: id del carrito 
+        schema:
+          $type: String 
+      responses:
+        "200":
+          description: Producto Eliminado
+        "401": 
+          description: Acceso denegado o token invalido                 
+        "500":
+          description: Error interno del servidor  
+  /api/carts/{cid}/purchase:
+    get:
+      summary: Genera ticket de compra
+      tags:
+        - Carts
+      parameters:
+      - name: cid
+        in: path
+        required: true
+        description: id del carrito que se desea solicitar
+        schema:
+          $type: String  
+      responses:
+        "200":
+          description: Carrito comprado
+          content: 
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#components/schemas/Ticket'
+        "500":
+          description: Error interno del servidor              
+
+
+components:
+  schemas:
+    Cart:
+      type: object
+      properties:
+        _id:
+          type: ObjectId
+          description: Id autogenerado de mongo
+        products: 
+          type: Array
+          items:
+            type: Object
+            properties:
+              product:
+                type: String
+              quantity:
+                type: Number  
+          description: productos y cantidades de los mismos 
+        user:
+          type: String
+          description: Description id del user dueño del carrito              
+      example:
+        _id: ObjectId("646186d5ebd445f6de0b672c")
+        products: [{product:"64617825ebd445f6de0b685f",quantity:4}]
+        user: "646186d5ebd445f6de0i987h"
+    Ticket:
+      type: object
+      properties:
+        _id:
+          type: ObjectId
+          description: Id autogenerado de mongo
+        code:
+          type: String
+          description: Codigo unico del ticket
+        purchase_datetime:
+          type: Date
+          description: Fecha de emision
+        amount:
+          type: Number
+          description: Total del ticket
+        purchaser:
+          type: String
+          description: user comprador
+        items:
+          type: Array
+          descriptiopn: items comprados
+      example:
+        _id:  ObjectId("646186d5ebd445f6de0b672c")
+        code: "4587ee4564"
+        purchase_datetime: 14/05/2021
+        amount: 450
+        purchaser: "646186d5ebd445f6de0i987h"
+        items: []
+
+
+
+                         

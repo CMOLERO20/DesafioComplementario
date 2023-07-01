@@ -1,0 +1,40 @@
+http: GET en /api/products?limit=5 - Tue May 16 2023 00:52:45 GMT-0300 (hora estándar de Argentina)
+http: POST en /api/products - Tue May 16 2023 00:55:21 GMT-0300 (hora estándar de Argentina)
+http: Method: POST, url: /api/products - time: 15:56:46
+http: Method: POST, url: /api/products - time: 15:57:16
+http: Method: POST, url: /api/products - time: 17:55:10
+error: Error al agregar producto
+error: Error al agregar producto
+error: Error al agregar producto
+error: Error al buscar el producto id 2222254
+error: Error al buscar el producto id 2222254
+error: Error al buscar el producto id 2222254
+error: logger error
+error: Error al agregar producto
+error: logger Test error
+info: logger Test info
+error: Error al agregar producto
+error: Error al agregar producto
+error: error al traer los usuarios
+error: Error al crear producto
+error: Error al crear producto
+error: Error al crear producto
+error: Error al buscar el producto
+error: Error al buscar el producto
+error: Error al buscar el producto
+error: Error al buscar el producto
+error: Error al buscar el producto
+error: Error al buscar el producto
+error: Error al buscar el producto
+error: Error al buscar el producto
+error: Error al buscar el producto
+error: Error al buscar el producto
+error: Error al buscar el producto
+error: Error al buscar el producto
+error: Error al buscar el producto
+error: Error al buscar el producto
+error: Error al buscar el producto
+error: Error al buscar el producto
+error: Error al buscar el producto
+error: Error al crear producto
+error: Error al crear producto
